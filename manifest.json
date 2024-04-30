@@ -1,0 +1,11 @@
+{
+    "name": "Translator",
+    "version": "1.0.0",
+    "description": "This is an extension to translate",
+    "manifest_version": 3,
+    "author": "Géraldine, Manon, Marjo and Mayté",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Translator"
+    }
+}
