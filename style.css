@@ -1,0 +1,21 @@
+h1 {
+    color: #885df1;
+    cursor: pointer;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    /* Google Fonts ? */
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 2;
+    margin: 20px 50px;
+    text-align: center;
+    /*text-decoration: underline;*/
+    /*text-transform: uppercase;*/
+    transition: all 150 ease;
+}
+
+h1:hover {
+    opacity: 0, 7;
+    color: #ec4f81;
+}

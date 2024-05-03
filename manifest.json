@@ -2,10 +2,23 @@
     "name": "Translator",
     "version": "1.0.0",
     "description": "This is an extension to translate",
+    "permissions": [
+        "activeTab"
+    ],
     "manifest_version": 3,
     "author": "Géraldine, Manon, Marjo and Mayté",
     "action": {
         "default_popup": "index.html",
         "default_title": "Translator"
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "script.js"
+            ]
+        }
+    ]
 }
