@@ -1,7 +1,7 @@
 {
-    "name": "Translator",
+    "name": "Dictionary",
     "version": "1.0.0",
-    "description": "This is an extension to translate",
+    "description": "Extension providing its users with a definition of a selected word",
     "permissions": [
         "activeTab"
     ],
@@ -9,7 +9,7 @@
     "author": "Géraldine, Manon, Marjo and Mayté",
     "action": {
         "default_popup": "index.html",
-        "default_title": "Translator"
+        "default_title": "Dictionary"
     },
     "content_scripts": [
         {
