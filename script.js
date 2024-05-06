@@ -12,8 +12,24 @@ async function searchWord(word) {
     ) {
         definition = data[0].meanings[0].definitions[0].definition;
     } else {
-        console.log("Définition non disponible pour", word);
-        alert(`Définition non disponible pour ${word}`);
+        console.log("Definition not available for ", word);
+        alert(`Definition not available for  ${word}`);
+    }
+
+    let synonym
+    if (data[0].meanings.length >= 1 && data[0].meanings[0].synonyms[0]) {
+        synonym = data[0].meanings[0].synonyms[0];
+    } else {
+        console.log("Synonym not available for ", word);
+        alert(`Synonym not available for  ${word}`);
+    }
+
+    let definition2
+    if (data[0].meanings[0].definitions.length >= 2 && data[0].meanings[0].definitions[1].definition) {
+        definition2 = data[0].meanings[0].definitions[1].definition;
+    } else {
+        console.log("Second definition not available for ", word);
+        alert(`Second definition not available for ${word}`);
     }
 
     let audioUrl;
@@ -27,6 +43,8 @@ async function searchWord(word) {
     console.log("Word:", word);
     // console.log("Text:", phonetics);
     console.log("Définition:", definition);
+    console.log("Synonyme : ", synonym);
+    console.log("Définition 2 : ", definition2);
     console.log("Audio:", audioUrl);
 
     displayWord(word, definition, synonym, definition2, audioUrl);
@@ -38,7 +56,7 @@ function displayWord(word, definition, synonym, definition2, audioUrl) {
     newWin.document.write(`<strong>First definition of ${word} :</strong><br> ${definition}<br>`);
     // Écriture du contenu des synonymes dans la fenêtre pop-up
     if (synonym == undefined) {
-        newWin.document.write(`<br><strong>no synonym of ${word}</strong><br>`);
+        newWin.document.write(`<br><strong>No synonym of ${word}</strong><br>`);
     }
     else {
         newWin.document.write(`<br><strong>Synonyms of ${word} :</strong><br> ${synonym}<br>`);
@@ -56,19 +74,19 @@ function displayWord(word, definition, synonym, definition2, audioUrl) {
 
 
     // Création d'un bouton pour écouter la prononciation
-    //let button = newWin.document.createElement('button');
-    //button.textContent = 'Listen to the pronunciation';
-    //button.addEventListener('click', function () {
-    // Création de l'élément audio
-    //let audio = newWin.document.createElement('audio');
-    //audio.src = audioUrl;
-    //audio.controls = true; // Ajoute les contrôles de lecture
-    //newWin.document.body.appendChild(audio);
-    //});
+    let button = newWin.document.createElement('button');
+    button.textContent = 'Listen to the pronunciation';
+    button.addEventListener('click', function () {
+        // Création de l'élément audio
+        let audio = newWin.document.createElement('audio');
+        audio.src = audioUrl;
+        audio.controls = true; // Ajoute les contrôles de lecture
+        newWin.document.body.appendChild(audio);
+    });
 
     // Ajout du bouton au document de la fenêtre pop-up
-    //newWin.document.body.appendChild(button);
-    //
+    newWin.document.body.appendChild(button);
+
 }
 
 document.addEventListener("mouseup", function () {
