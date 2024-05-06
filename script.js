@@ -49,10 +49,9 @@ function displayWord(word, definition, audioUrl) {
     newWin.document.body.appendChild(button);
 }
 
-document.addEventListener('mouseup', function () {
+document.addEventListener("mouseup", function () {
     var selectedText = window.getSelection().toString();
-    if (selectedText !== '') {
+    if (selectedText !== "") {
         searchWord(selectedText);
-
     }
 });
