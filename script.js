@@ -9,30 +9,66 @@ async function searchWord(word) {
     if (data[0].meanings[0].definitions.length >= 1 && data[0].meanings[0].definitions[0].definition) {
         definition = data[0].meanings[0].definitions[0].definition;
     } else {
-        console.log("Définition non disponible pour", word);
-        alert(`Définition non disponible pour ${word}`);
+        console.log("Definition not available for ", word);
+        alert(`Definition not available for ${word}`);
+    }
+    console.log("data[0].meanings.length ", data[0].meanings.length)
+    let synonym
+    if (data[0].meanings.length >= 1 && data[0].meanings[0].synonyms[0]) {
+        synonym = data[0].meanings[0].synonyms[0];
+    } else {
+        console.log("Synonym not available for ", word);
+        alert(`Synonym not available for  ${word}`);
+    }
+
+    let definition2
+    if (data[0].meanings[0].definitions.length >= 2 && data[0].meanings[0].definitions[1].definition) {
+        definition2 = data[0].meanings[0].definitions[1].definition;
+    } else {
+        console.log("Second definition not available for ", word);
+        alert(`Second definition not available for ${word}`);
     }
 
     let audioUrl;
     if (data[0].phonetics.length >= 1 && data[0].phonetics[0].audio) {
         audioUrl = data[0].phonetics[0].audio;
     } else {
-        console.log("Audio non disponible pour", word);
-        alert(`Audio non disponible pour ${word}`);
+        console.log("Audio not available for ", word);
+        alert(`Audio not available for  ${word}`);
     }
 
     console.log("Word:", word);
     // console.log("Text:", phonetics);
-    console.log("Définition:", definition);
+    console.log("Définition : ", definition);
+    console.log("Synonyme : ", synonym);
+    console.log("Définition 2 : ", definition2);
     console.log("Audio:", audioUrl);
 
-    displayWord(word, definition, audioUrl);
+    displayWord(word, definition, synonym, definition2, audioUrl);
 }
 
-function displayWord(word, definition, audioUrl) {
+function displayWord(word, definition, synonym, definition2, audioUrl) {
     let newWin = window.open("about:blank", "popUpName", "width=400,height=400");
     // Écriture du contenu de la définition dans la fenêtre pop-up
-    newWin.document.write(`Définition de ${word} : ${definition}`);
+    newWin.document.write(`<strong>First definition of ${word} :</strong><br> ${definition}<br>`);
+    // Écriture du contenu des synonymes dans la fenêtre pop-up
+    if (synonym == undefined) {
+        newWin.document.write(`<br><strong>no synonym of ${word}</strong><br><br>`);
+    }
+    else {
+        newWin.document.write(`<br><strong>Synonyms of ${word} :</strong><br><br> ${synonym}<br>`);
+    }
+
+    // Création d'un bouton pour avoir une deuxième définition
+    let buttonDef2 = newWin.document.createElement('button');
+    buttonDef2.textContent = 'Definition 2';
+    buttonDef2.addEventListener('click', function () {
+        newWin.document.write(`<br><br><strong> Second definition of ${word} :</strong><br> ${definition2} <br>`);
+    });
+
+    // Ajout du bouton de la deuxième définition au document de la fenêtre popup
+    newWin.document.body.appendChild(buttonDef2);
+
 
     // Création d'un bouton pour écouter la prononciation
     let button = newWin.document.createElement('button');
