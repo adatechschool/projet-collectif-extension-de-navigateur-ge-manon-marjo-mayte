@@ -9,6 +9,7 @@
     "default_popup": "index.html",
     "default_icon": {
       "16": "tao16.png",
+      "32": "tao32.png",
       "48": "tao48.png",
       "128": "tao128.png"
     }
